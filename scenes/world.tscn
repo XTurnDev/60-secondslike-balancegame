@@ -1,11 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://cit6v5isevu58"]
+[gd_scene load_steps=27 format=3 uid="uid://cit6v5isevu58"]
 
 [ext_resource type="Script" uid="uid://cqueard4k83lq" path="res://scripts/game.gd" id="1_nnsk1"]
 [ext_resource type="Script" uid="uid://c4rccqx6vfp27" path="res://scripts/randomevents.gd" id="2_4wyf3"]
 [ext_resource type="FontFile" uid="uid://bf2oicsl7su" path="res://fonts/upheavtt.ttf" id="2_rwgxs"]
 [ext_resource type="Script" uid="uid://nlxm8pn050ln" path="res://scripts/familyhandler.gd" id="3_k0juu"]
-[ext_resource type="Script" uid="uid://dxo5hk0hoylwq" path="res://scenes/text_handler.gd" id="4_71j4m"]
+[ext_resource type="Script" uid="uid://dxo5hk0hoylwq" path="res://scripts/text_handler.gd" id="4_71j4m"]
 [ext_resource type="Texture2D" uid="uid://1w7xdd2hd2tq" path="res://sprites/background_normal.png" id="5_4mrxx"]
+[ext_resource type="Script" uid="uid://cp1d58keouyoq" path="res://scripts/all_events.gd" id="5_o8fc1"]
 [ext_resource type="Texture2D" uid="uid://blm6jsyejyjlv" path="res://sprites/kapatma.png" id="6_i7141"]
 [ext_resource type="Texture2D" uid="uid://bsm2sjqq7ex3e" path="res://sprites/book.png" id="6_qfnet"]
 [ext_resource type="Texture2D" uid="uid://dti8lbafcvlmm" path="res://sprites/pasta.png" id="7_e3hyu"]
@@ -88,6 +89,10 @@ daughter_health = NodePath("../Game/FamilyMembers/VBoxContainer/Daughter/Health"
 [node name="TextHandler" type="Node" parent="." node_paths=PackedStringArray("money_label")]
 script = ExtResource("4_71j4m")
 money_label = NodePath("../Game/MoneyLabel")
+
+[node name="EventsListHandler" type="Node" parent="."]
+script = ExtResource("5_o8fc1")
+events = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
 
 [node name="Game" type="Panel" parent="."]
 offset_right = 240.0

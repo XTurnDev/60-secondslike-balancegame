@@ -6,6 +6,8 @@ extends Node
 
 var usable_events:Array = [Resource]
 
+var current_event: Resource
+
 var rng = RandomNumberGenerator.new()
 
 func get_rarity():
