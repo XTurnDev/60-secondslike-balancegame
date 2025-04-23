@@ -1,0 +1,386 @@
+[gd_scene load_steps=26 format=3 uid="uid://cit6v5isevu58"]
+
+[ext_resource type="Script" uid="uid://cqueard4k83lq" path="res://scripts/game.gd" id="1_nnsk1"]
+[ext_resource type="Script" uid="uid://c4rccqx6vfp27" path="res://scripts/randomevents.gd" id="2_4wyf3"]
+[ext_resource type="FontFile" uid="uid://bf2oicsl7su" path="res://fonts/upheavtt.ttf" id="2_rwgxs"]
+[ext_resource type="Script" uid="uid://nlxm8pn050ln" path="res://scripts/familyhandler.gd" id="3_k0juu"]
+[ext_resource type="Script" uid="uid://dxo5hk0hoylwq" path="res://scenes/text_handler.gd" id="4_71j4m"]
+[ext_resource type="Texture2D" uid="uid://1w7xdd2hd2tq" path="res://sprites/background_normal.png" id="5_4mrxx"]
+[ext_resource type="Texture2D" uid="uid://blm6jsyejyjlv" path="res://sprites/kapatma.png" id="6_i7141"]
+[ext_resource type="Texture2D" uid="uid://bsm2sjqq7ex3e" path="res://sprites/book.png" id="6_qfnet"]
+[ext_resource type="Texture2D" uid="uid://dti8lbafcvlmm" path="res://sprites/pasta.png" id="7_e3hyu"]
+[ext_resource type="Texture2D" uid="uid://dg3v0nu5qkcor" path="res://sprites/canned beans.png" id="8_q5onr"]
+[ext_resource type="Texture2D" uid="uid://bgd7thqv888mm" path="res://sprites/electricity.png" id="9_jhx03"]
+[ext_resource type="Texture2D" uid="uid://bnuspw5gtvk08" path="res://sprites/rat poison.png" id="10_jhx03"]
+[ext_resource type="Texture2D" uid="uid://kwfgms1r8qpu" path="res://sprites/water.png" id="11_o8fc1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4mrxx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7r4gi"]
+texture = ExtResource("6_i7141")
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w7kh3"]
+texture = ExtResource("6_i7141")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4mrxx"]
+texture = ExtResource("6_i7141")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfnet"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i7141"]
+texture = ExtResource("6_qfnet")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qfnet"]
+texture = ExtResource("6_qfnet")
+
+[sub_resource type="LabelSettings" id="LabelSettings_rwgxs"]
+font = ExtResource("2_rwgxs")
+font_size = 300
+
+[sub_resource type="LabelSettings" id="LabelSettings_k0juu"]
+font = ExtResource("2_rwgxs")
+font_size = 768
+
+[sub_resource type="LabelSettings" id="LabelSettings_71j4m"]
+font = ExtResource("2_rwgxs")
+font_size = 500
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jhx03"]
+bg_color = Color(0.20278, 0.253817, 0.312477, 0.858824)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+shadow_size = 2
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jhx03"]
+font = ExtResource("2_rwgxs")
+font_size = 500
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_nnsk1")
+
+[node name="RandomEventHandler" type="Node" parent="."]
+script = ExtResource("2_4wyf3")
+
+[node name="FamilyStatusHandler" type="Node" parent="." node_paths=PackedStringArray("wife_status", "wife_health", "son_status", "son_health", "daughter_status", "daughter_health")]
+script = ExtResource("3_k0juu")
+wife_status = NodePath("../Game/FamilyMembers/VBoxContainer/Wife/Status")
+wife_health = NodePath("../Game/FamilyMembers/VBoxContainer/Wife/Health")
+son_status = NodePath("../Game/FamilyMembers/VBoxContainer/Son/Status")
+son_health = NodePath("../Game/FamilyMembers/VBoxContainer/Son/Health")
+daughter_status = NodePath("../Game/FamilyMembers/VBoxContainer/Daughter/Status")
+daughter_health = NodePath("../Game/FamilyMembers/VBoxContainer/Daughter/Health")
+
+[node name="TextHandler" type="Node" parent="." node_paths=PackedStringArray("money_label")]
+script = ExtResource("4_71j4m")
+money_label = NodePath("../Game/MoneyLabel")
+
+[node name="Game" type="Panel" parent="."]
+offset_right = 240.0
+offset_bottom = 160.0
+
+[node name="GameBackground" type="TextureRect" parent="Game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_4mrxx")
+
+[node name="Book" type="Panel" parent="Game"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -66.0
+offset_right = 84.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Game/Book"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game/Book/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="pasta" type="Button" parent="Game/Book/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_rwgxs")
+theme_override_font_sizes/font_size = 16
+icon = ExtResource("7_e3hyu")
+flat = true
+
+[node name="canned_beans" type="Button" parent="Game/Book/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("8_q5onr")
+flat = true
+
+[node name="electricity" type="Button" parent="Game/Book/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("9_jhx03")
+flat = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Game/Book/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="rat_poison" type="Button" parent="Game/Book/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_rwgxs")
+theme_override_font_sizes/font_size = 16
+icon = ExtResource("10_jhx03")
+flat = true
+
+[node name="medicine" type="Button" parent="Game/Book/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+icon = ExtResource("11_o8fc1")
+flat = true
+
+[node name="water" type="Button" parent="Game/Book/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+icon = ExtResource("11_o8fc1")
+flat = true
+
+[node name="ExitBook" type="Button" parent="Game/Book"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4mrxx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7r4gi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_w7kh3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_4mrxx")
+icon = ExtResource("6_i7141")
+
+[node name="BookOpen" type="Button" parent="Game"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -42.0
+offset_right = -8.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qfnet")
+theme_override_styles/hover = SubResource("StyleBoxTexture_i7141")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qfnet")
+icon = ExtResource("6_qfnet")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="MoneyLabel" type="Label" parent="Game"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -55.0
+offset_right = 1025.0
+offset_bottom = 270.0
+grow_horizontal = 0
+scale = Vector2(0.05, 0.05)
+text = "asdasd"
+label_settings = SubResource("LabelSettings_rwgxs")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="FamilyMembers" type="Panel" parent="Game"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -42.0
+offset_right = 40.0
+offset_bottom = 42.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game/FamilyMembers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Wife" type="Panel" parent="Game/FamilyMembers/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Name" type="Label" parent="Game/FamilyMembers/VBoxContainer/Wife"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 1716.0
+offset_bottom = 630.0
+scale = Vector2(0.01, 0.01)
+text = "Wife"
+label_settings = SubResource("LabelSettings_k0juu")
+
+[node name="Status" type="Label" parent="Game/FamilyMembers/VBoxContainer/Wife"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 1716.0
+offset_bottom = 636.0
+scale = Vector2(0.01, 0.01)
+text = "Wife"
+label_settings = SubResource("LabelSettings_71j4m")
+
+[node name="Health" type="Label" parent="Game/FamilyMembers/VBoxContainer/Wife"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 10.0
+offset_right = 1716.0
+offset_bottom = 640.0
+scale = Vector2(0.01, 0.01)
+text = "Wife"
+label_settings = SubResource("LabelSettings_71j4m")
+
+[node name="Son" type="Panel" parent="Game/FamilyMembers/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Name" type="Label" parent="Game/FamilyMembers/VBoxContainer/Son"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 1716.0
+offset_bottom = 630.0
+scale = Vector2(0.01, 0.01)
+text = "son"
+label_settings = SubResource("LabelSettings_k0juu")
+
+[node name="Status" type="Label" parent="Game/FamilyMembers/VBoxContainer/Son"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 1716.0
+offset_bottom = 636.0
+scale = Vector2(0.01, 0.01)
+text = "Wife"
+label_settings = SubResource("LabelSettings_71j4m")
+
+[node name="Health" type="Label" parent="Game/FamilyMembers/VBoxContainer/Son"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 10.0
+offset_right = 1716.0
+offset_bottom = 640.0
+scale = Vector2(0.01, 0.01)
+text = "Wife"
+label_settings = SubResource("LabelSettings_71j4m")
+
+[node name="Daughter" type="Panel" parent="Game/FamilyMembers/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Name" type="Label" parent="Game/FamilyMembers/VBoxContainer/Daughter"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 1716.0
+offset_bottom = 630.0
+scale = Vector2(0.01, 0.01)
+text = "daughter"
+label_settings = SubResource("LabelSettings_k0juu")
+
+[node name="Status" type="Label" parent="Game/FamilyMembers/VBoxContainer/Daughter"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 1716.0
+offset_bottom = 636.0
+scale = Vector2(0.01, 0.01)
+text = "Wife"
+label_settings = SubResource("LabelSettings_71j4m")
+
+[node name="Health" type="Label" parent="Game/FamilyMembers/VBoxContainer/Daughter"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 10.0
+offset_right = 1716.0
+offset_bottom = 640.0
+scale = Vector2(0.01, 0.01)
+text = "Wife"
+label_settings = SubResource("LabelSettings_71j4m")
+
+[node name="EventPanel" type="Panel" parent="Game"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -38.0
+offset_right = 72.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jhx03")
+
+[node name="EventText" type="Label" parent="Game/EventPanel"]
+layout_mode = 1
+offset_left = 1.0
+offset_right = 14201.0
+offset_bottom = 7500.0
+scale = Vector2(0.01, 0.01)
+text = "test"
+label_settings = SubResource("LabelSettings_jhx03")
+autowrap_mode = 1
+clip_text = true
+
+[node name="ExitEvent" type="Button" parent="Game/EventPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4mrxx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7r4gi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_w7kh3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_4mrxx")
+icon = ExtResource("6_i7141")
+
+[connection signal="money_update" from="." to="TextHandler" method="_on_world_money_update"]
+[connection signal="day_change" from="FamilyStatusHandler" to="FamilyStatusHandler" method="_on_day_change"]
+[connection signal="health_changed" from="FamilyStatusHandler" to="FamilyStatusHandler" method="_on_health_changed"]
+[connection signal="status_changed" from="FamilyStatusHandler" to="FamilyStatusHandler" method="_on_status_changed"]
+[connection signal="pressed" from="Game/Book/ExitBook" to="." method="_on_exit_book_pressed"]
+[connection signal="pressed" from="Game/BookOpen" to="." method="_on_book_open_pressed"]
+[connection signal="pressed" from="Game/EventPanel/ExitEvent" to="." method="_on_exit_event_pressed"]
